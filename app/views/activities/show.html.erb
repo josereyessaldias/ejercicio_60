@@ -1,0 +1,52 @@
+<div id="fondo-act" class="fondo_activity">
+
+	<div class="cuadro_centro_act">
+		<div class="row">
+			<div class="col-6">
+				<h3><%= @activity.name %></h3><br>
+				<img src="<%= @activity.photo.normal %>">
+			</div>
+			<div class="col-6 boton">
+				<% if user_signed_in? %>
+					<% if @registrada == true %>
+						<%= link_to 'Marcar como Actividad por Realizar', user_activity_path(@user_activity,:enmendar => true,:status => 'por_hacer'), method: :patch, :class => 'btn boton-tipo' %><br><br>
+						<%= link_to 'Borrar del registro de actividades', user_activity_path(@user_activity.id), method: :delete, :class => 'btn boton-tipo' %>
+
+					<% elsif @registrada == false %>
+						<%= link_to 'Registrar como Actividad Realizada', user_activity_path(@user_activity,:enmendar => false, :status => 'realizada'), method: :patch, :class => 'btn boton-tipo' %><br><br>
+						<%= link_to 'Borrar del registro de actividades', user_activity_path(@user_activity.id), method: :delete, :class => 'btn boton-tipo' %>
+
+					<% elsif @registrada == nil %>
+						<%= link_to 'Registrar como Actividad Realizada', user_activities_path(:activity_id=> @activity.id, :status=> 'realizada',:user_id => current_user.id), method: :post, :class => 'btn boton-tipo' %><br><br>
+						<%= link_to 'Registrar como Actividad por Realizar', user_activities_path(:activity_id=> @activity.id, :status=> 'por_hacer',:user_id => current_user.id), method: :post, :class => 'btn boton-tipo' %>
+					<% end %>
+				<% end %>
+				<br><br>
+				<h5>Colecciones a la que pertence la actividad:</h5>
+				<ul>
+					<% @activity.collections.each do |collection| %>
+						<li><h6><%= link_to collection.name, collection_path(collection) %></h6></li>
+					<% end %>
+				</ul>
+			</div>
+			<br>
+
+		</div>
+		<br>
+		<% if can?(:edit, @activity) %>
+			<%= link_to 'Editar actividad', edit_activity_path(@activity.id), :class => 'btn boton-tipo' %>
+		<% end %>
+
+		<img src="<%= @activity.photo %>" id="lo" style="display: none">
+	</div>
+</div>
+
+<script>
+		
+		$("#fondo-act").backstretch(document.getElementById("lo").src)
+		
+		
+
+</script>
+
+

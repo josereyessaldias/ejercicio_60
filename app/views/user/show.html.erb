@@ -1,0 +1,270 @@
+<div class="titulo-user">
+	<div class="letra-circulo">
+		<%= @user.name[0].capitalize %>
+	</div>
+	<h4 class="nombre-user">Colecciones de<br><%= @user.name %></h4>
+</div>
+
+
+<div class="row">
+	<div class="col-md-5 row recuadro-user-resumen">
+		<div class="foto-user col-5">
+			<img src="<%= @user.photo.normal %>" class="foto_usuario"> 
+		</div>
+		<div class="col-7 mt-5">
+			<% @cats_user_done.each do |category| %>
+				<p>Total de <%= category.sustantivo %> que <%= category.past %>: #</p>
+			<% end %>
+			
+		</div>
+	</div>
+	<div class="col-7">
+		<h6 style="text-align:center" class="mt-1 mb-2">Colecciones</h6>
+		<div class="row">
+			<% @user_collections.each do |coll| %>
+
+				<div class="col-4 recuadro-coleccion ml-2">
+					<img src="<%= coll.collection.photo.normal %>" class="foto-coleccion"><br>
+					<%= link_to coll.collection.name, collection_path(coll.collection), :class => "coleccion-nombre" %>
+				</div>
+
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<br>
+
+
+
+<% if user_signed_in? && @following %>
+	<%=link_to "Dejar de seguir a #{@user.name}", contact_path(:id => @user.id), method: :delete, :class => 'btn boton-tipo' %>
+<% elsif user_signed_in? && @user.id != current_user.id %>
+	<%=link_to "Seguir a #{@user.name}", contacts_path(:id => @user.id), method: :post, :class => 'btn boton-tipo', :style => 'color:white;'  %>
+<% end %>
+<br>
+
+<div class="row">
+	<div class="col-12 col-md-5 pl-0 pr-2" >
+		<%if @trekking != [] %>
+			<h6 style="text-align:center;">Trekkings y lugares visitados</h6>
+		 	<div id="map" style="height: 240px;"></div>
+		<% end %>
+	</div>
+
+
+	<div class="col-12 col-md-7">
+		<h6 style="text-align:center">Actividades por año</h6>
+		<%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
+		<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+		
+		<% my_chart = UserActivity.where(user_id: @user.id).group_by_year(:start).count %>
+
+		<%= line_chart my_chart, height: "240px" %>
+
+	</div>
+</div>
+<br>
+<hr>
+
+<div class="row">
+	<div class="col-12 col-md-6">
+		<h5><%= @titulo_done %></h5>
+
+		<% @cats_user_done.each do |category| %>
+			<h6><%= category.sustantivo %> que <%= category.past %></h6>
+			<div style="margin: 0 0 10px">
+				<% @user_act_done.each do |suceso| %>
+					<% if suceso.activity.category_id == category.id %>
+						
+						<div class="row">
+							<div style="float: left; margin-left: 20px;">
+								<img src="<%= suceso.activity.photo.thumb %>" >
+							</div>
+							<div style="float: left; margin: 0 0 5px 5px;">
+								<%= link_to suceso.activity.name, activity_path(suceso.activity) %><br>
+								<%= category.participio %> el <%= suceso.start.strftime("%F") %>
+								<% if can?(:destroy, suceso) %>
+									<%= link_to 'Editar', edit_user_activity_path(suceso) %>
+									<%= link_to 'Borrar', user_activity_path(suceso), method: :delete %>
+								<% end %>
+							</div>
+						</div>
+
+					<% end %>
+				<% end %>
+			</div>
+		<% end %>
+		
+	</div>
+
+	<div class="col-12 col-md-6">
+		<% if @titulo_wish %>
+			<h5><%= @titulo_wish %><%= link_to "Ver en Calendario", user_calendar_path(@user.id), :class=> 'btn btn-sm float-right', :style=> 'width:180px;background-color:rgb(106,37,94);color:white' %></h5>			
+		<% end %>
+
+		<% @cats_user_wish.each do |category| %>
+			<h6><%= category.sustantivo %> que <%= category.futuro %></h6>
+			<div style="margin: 0 0 10px">
+				<% @user_act_wish.each do |suceso| %>
+					<% if suceso.activity.category_id == category.id %>
+						
+						<div class="row">
+							<div style="float: left; margin-left: 20px;">
+								<img src="<%= suceso.activity.photo.thumb %>" >
+							</div>
+							<div style="float: left; margin: 0 0 5px 5px;">
+								<%= link_to suceso.activity.name, activity_path(suceso.activity) %><br>
+								planificada para el <%= suceso.start.strftime("%F") %>
+								<% if can?(:destroy, suceso) %>
+									<%= link_to 'Editar', edit_user_activity_path(suceso) %>
+									<%= link_to 'Borrar', user_activity_path(suceso), method: :delete %>
+								<% end %>
+							</div>
+						</div>
+
+					<% end %>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+
+<br><br>
+
+
+<%if @trekking != [] %>
+
+	<script>
+		
+		handler = Gmaps.build('Google');
+		handler.buildMap({
+			provider: {
+				center: new google.maps.LatLng({ lat: <%= @trekking.last.activity.latitude %>, lng: <%= @trekking.last.activity.longitude %> }),
+	      		zoom: 8,
+	      		controlSize: 8,
+	      		styles: [
+	              {elementType: 'geometry', stylers: [{color: '#ebe3cd'}]},
+	              {elementType: 'labels.text.fill', stylers: [{color: '#523735'}]},
+	              {elementType: 'labels.text.stroke', stylers: [{color: '#f5f1e6'}]},
+	              {
+	                featureType: 'administrative',
+	                elementType: 'geometry.stroke',
+	                stylers: [{color: '#c9b2a6'}]
+	              },
+	              {
+	                featureType: 'administrative.land_parcel',
+	                elementType: 'geometry.stroke',
+	                stylers: [{color: '#dcd2be'}]
+	              },
+	              {
+	                featureType: 'administrative.land_parcel',
+	                elementType: 'labels.text.fill',
+	                stylers: [{color: '#ae9e90'}]
+	              },
+	              {
+	                featureType: 'landscape.natural',
+	                elementType: 'geometry',
+	                stylers: [{color: '#dfd2ae'}]
+	              },
+	              {
+	                featureType: 'poi',
+	                elementType: 'geometry',
+	                stylers: [{color: '#dfd2ae'}]
+	              },
+	              {
+	                featureType: 'poi',
+	                elementType: 'labels.text.fill',
+	                stylers: [{color: '#93817c'}]
+	              },
+	              {
+	                featureType: 'poi.park',
+	                elementType: 'geometry.fill',
+	                stylers: [{color: '#a5b076'}]
+	              },
+	              {
+	                featureType: 'poi.park',
+	                elementType: 'labels.text.fill',
+	                stylers: [{color: '#447530'}]
+	              },
+	              {
+	                featureType: 'road',
+	                elementType: 'geometry',
+	                stylers: [{color: '#f5f1e6'}]
+	              },
+	              {
+	                featureType: 'road.arterial',
+	                elementType: 'geometry',
+	                stylers: [{color: '#fdfcf8'}]
+	              },
+	              {
+	                featureType: 'road.highway',
+	                elementType: 'geometry',
+	                stylers: [{color: '#f8c967'}]
+	              },
+	              {
+	                featureType: 'road.highway',
+	                elementType: 'geometry.stroke',
+	                stylers: [{color: '#e9bc62'}]
+	              },
+	              {
+	                featureType: 'road.highway.controlled_access',
+	                elementType: 'geometry',
+	                stylers: [{color: '#e98d58'}]
+	              },
+	              {
+	                featureType: 'road.highway.controlled_access',
+	                elementType: 'geometry.stroke',
+	                stylers: [{color: '#db8555'}]
+	              },
+	              {
+	                featureType: 'road.local',
+	                elementType: 'labels.text.fill',
+	                stylers: [{color: '#806b63'}]
+	              },
+	              {
+	                featureType: 'transit.line',
+	                elementType: 'geometry',
+	                stylers: [{color: '#dfd2ae'}]
+	              },
+	              {
+	                featureType: 'transit.line',
+	                elementType: 'labels.text.fill',
+	                stylers: [{color: '#8f7d77'}]
+	              },
+	              {
+	                featureType: 'transit.line',
+	                elementType: 'labels.text.stroke',
+	                stylers: [{color: '#ebe3cd'}]
+	              },
+	              {
+	                featureType: 'transit.station',
+	                elementType: 'geometry',
+	                stylers: [{color: '#dfd2ae'}]
+	              },
+	              {
+	                featureType: 'water',
+	                elementType: 'geometry.fill',
+	                stylers: [{color: '#b9d3c2'}]
+	              },
+	              {
+	                featureType: 'water',
+	                elementType: 'labels.text.fill',
+	                stylers: [{color: '#92998d'}]
+	              }
+	            ],
+
+			},
+			internal: {
+				id: 'map'
+				}
+			},
+		function(){
+		  markers = handler.addMarkers(<%= raw @hash.to_json %>);		  
+		});
+
+	</script>
+	
+<% end %>
+
