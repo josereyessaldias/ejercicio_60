@@ -3,8 +3,12 @@
 	<div class="cuadro_centro_col">
 		<div class="row">
 			<div class="col-6">
-				<h3 class="titulo-col"><%= @collection.name %></h3><br>
+				<h3 class="titulo-col"><%= @collection.name %></h3>
+				<p class="titulo-col">Propietario de esta colección: <%= link_to @collection.user.name, user_path(@collection.user) %></p>
+				<br>
 				<img src="<%= @collection.photo.normal %>">
+				<br><br>
+				<%= link_to 'Editar esta colección', edit_collection_path(@collection), :class => 'btn btn-sm boton-tipo' %>
 			</div>
 
 			<div class="col-6">

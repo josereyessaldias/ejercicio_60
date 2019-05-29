@@ -209,6 +209,24 @@ a:hover {
 	color: rgb(196,33,61)
 }
 
+/* editar colección */
+.boton-tipo-chico {
+	color: rgb(2,13,54);
+	border: solid 1px rgb(2,13,54);
+	height: 20px;
+	line-height: 8px;
+	font-size: 12px;
+}
+
+.boton-tipo-chico:hover{
+	background-color: rgba(2,13,54,0.60);
+}
+
+.elemento-edit-col{
+	width: 60%;
+	padding: 0 0 0 10px;
+}
+
 @media (max-width:800px) {
 
 

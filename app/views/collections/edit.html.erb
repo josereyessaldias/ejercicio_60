@@ -14,3 +14,15 @@
 
 	<% end %>
 <% end %>
+<br><br>
+<h5>Actividades en esta colección:</h5>
+<table>
+<% @col_activities.each do |act| %>
+	<tr>
+		<td class="elemento-edit-col"><%= link_to act.activity.name, activity_path(act.activity) %></td>
+		<td><%= link_to 'Borrar de la lista', '#', :class => 'btn boton-tipo-chico' %> </td>
+	</tr>
+<% end %>
+</table>
+<br>
+<h6>Agregar actividad:</h6>
