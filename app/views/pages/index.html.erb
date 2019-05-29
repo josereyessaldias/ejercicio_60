@@ -1,6 +1,7 @@
 
 
-<%= link_to 'Crear actividad nueva', new_activity_path %><br>
+<%= link_to 'Crear una nueva Actividad', new_activity_path %><br>
+<%= link_to 'Crear una nueva Colección', new_collection_path %><br>
 
 <br>
 <form>
@@ -52,7 +53,7 @@
 					<img src="<%= evento.user.photo.thumb %>" class="foto-index">
 				</div>
 				<div class="col-9">
-					<p class="texto-index"><%= link_to evento.user.name, user_path(evento.user_id) %> <%= evento.activity.category.past %>
+					<p class="texto-index"><strong><%= link_to evento.user.name, user_path(evento.user_id) %></strong> <%= evento.activity.category.past %>
 					<%= link_to evento.activity.name, activity_path(evento.activity.id) %><br>
 					Categoría: <%= evento.activity.category.sustantivo %></p>
 				</div>

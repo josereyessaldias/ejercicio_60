@@ -1,0 +1,17 @@
+<h2>Crear nueva Colección </h2>
+<br>
+
+<% if user_signed_in? %>
+	<%= form_with model: @collection, url: collections_path, method: :post, local: true do |f| %>
+		
+		<%= f.label :name %>
+		<%= f.text_field :name %>	<br>
+
+	    <%= f.label :photo %> <br>
+	    <%= f.file_field :photo %>
+	    <%= f.text_field :remote_photo_url %><br>
+
+		<%= f.submit "Crear Colección | Pasar a agregar actividades" %>
+
+	<% end %>
+<% end %>

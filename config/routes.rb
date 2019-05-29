@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :collections, only: [:show]
+  
+  resources :collections, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :user_collections, only: [:create, :destroy]
   resources :user, only: [:show]
   resources :activities, only: [:create, :new, :show, :edit, :update]

@@ -12,4 +12,35 @@ class CollectionsController < ApplicationController
 	end
 
   end
+
+
+  def new
+  	@collection = Collection.new
+  end
+
+  def create
+  	@collection = Collection.new
+  	@collection.name = params[:collection][:name]
+  	@collection.photo = params[:collection][:photo]
+  	@collection.remote_photo_url = params[:collection][:remote_photo_url]
+  	@collection.owner_id = current_user.id
+  	@collection.save
+  	redirect_to edit_collection_path(@collection), notice: 'collection fue creada'
+  end
+
+  def edit
+  	@collection = Collection.find(params[:id])
+  end
+
+  def update
+  	@collection = Collection.find(params[:id])
+  	@collection.update(name: params[:collection][:name])
+  	@collection.update(photo: params[:collection][:photo])
+  	@collection.update(remote_photo_url: params[:collection][:remote_photo_url])
+  	redirect_to user_path(current_user), notice: 'collection fue editada'
+  end
+
+  def destroy
+  end
+
 end
