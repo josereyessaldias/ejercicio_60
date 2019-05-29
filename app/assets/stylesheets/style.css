@@ -193,8 +193,21 @@ a:hover {
 	text-align: right;
 }
 
+/* estos son estilos de show collection */
+.cuadro_centro_col {
+	padding: 20px 10% 20px 10%;
+	background-color: rgba(2,13,54,0.85);
+	height: 88vh;
+	border-radius: 6px;
+}
 
+.titulo-col{
+	color: rgb(250,190,67)
+}
 
+.color-rojo-col{
+	color: rgb(196,33,61)
+}
 
 @media (max-width:800px) {
 

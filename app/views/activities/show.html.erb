@@ -3,25 +3,36 @@
 	<div class="cuadro_centro_act">
 		<div class="row">
 			<div class="col-6">
-				<h3><%= @activity.name %></h3><br>
+				<h3><%= @activity.name %></h3>
+				<p>Categoría: <%= @activity.category.name %></p>
 				<img src="<%= @activity.photo.normal %>">
 			</div>
 			<div class="col-6 boton">
 				<% if user_signed_in? %>
 					<% if @registrada == true %>
-						<%= link_to 'Marcar como Actividad por Realizar', user_activity_path(@user_activity,:enmendar => true,:status => 'por_hacer'), method: :patch, :class => 'btn boton-tipo' %><br><br>
-						<%= link_to 'Borrar del registro de actividades', user_activity_path(@user_activity.id), method: :delete, :class => 'btn boton-tipo' %>
+						<h6><i>Actividad registrada como Realizada</h6>
+						<p>Fecha de realización: <%= @user_activity.start.strftime("%e de %b de %Y") %></i></p>
+						<br><br>
+						<%= link_to 'Marcar como actividad Pendiente por Realizar', user_activity_path(@user_activity,:enmendar => true,:status => 'por_hacer'), method: :patch, :class => 'btn btn-sm boton-tipo' %><br><br>
+						<%= link_to 'Borrar del registro de actividades', user_activity_path(@user_activity.id), method: :delete, :class => 'btn btn-sm boton-tipo' %>
 
 					<% elsif @registrada == false %>
-						<%= link_to 'Registrar como Actividad Realizada', user_activity_path(@user_activity,:enmendar => false, :status => 'realizada'), method: :patch, :class => 'btn boton-tipo' %><br><br>
-						<%= link_to 'Borrar del registro de actividades', user_activity_path(@user_activity.id), method: :delete, :class => 'btn boton-tipo' %>
+						<h6><i>Actividad registrada como Pendiente por Realizar</i></h6>
+						<p><i>Fecha de pronosticada: <%= @user_activity.start.strftime("%e de %b de %Y") %></i></p>
+						<% if @user_activity.start < Time.now %>
+							<strong>La actividad se encuentra atrasada por <%= distance_of_time_in_words(Time.now,@user_activity.start) %></strong><br>
+						<% end %>
+						<br><br>
+						<%= link_to 'Registrar como Actividad Realizada', user_activity_path(@user_activity,:enmendar => false, :status => 'realizada'), method: :patch, :class => 'btn btn-sm boton-tipo' %><br><br>
+						<%= link_to 'Borrar del registro de actividades', user_activity_path(@user_activity.id), method: :delete, :class => 'btn btn-sm boton-tipo' %>
 
 					<% elsif @registrada == nil %>
-						<%= link_to 'Registrar como Actividad Realizada', user_activities_path(:activity_id=> @activity.id, :status=> 'realizada',:user_id => current_user.id), method: :post, :class => 'btn boton-tipo' %><br><br>
-						<%= link_to 'Registrar como Actividad por Realizar', user_activities_path(:activity_id=> @activity.id, :status=> 'por_hacer',:user_id => current_user.id), method: :post, :class => 'btn boton-tipo' %>
+						<h6><i>Actividad no Registrada</i></h6><br><br>
+						<%= link_to 'Registrarla como Actividad Realizada', user_activities_path(:activity_id=> @activity.id, :status=> 'realizada',:user_id => current_user.id), method: :post, :class => 'btn btn-sm boton-tipo' %><br><br>
+						<%= link_to 'Registrarla como actividad Pendiente por Realizar', user_activities_path(:activity_id=> @activity.id, :status=> 'por_hacer',:user_id => current_user.id), method: :post, :class => 'btn btn-sm boton-tipo' %>
 					<% end %>
 				<% end %>
-				<br><br>
+				<br><br><br><br>
 				<h5>Colecciones a la que pertence la actividad:</h5>
 				<ul>
 					<% @activity.collections.each do |collection| %>

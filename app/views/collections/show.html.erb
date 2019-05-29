@@ -1,9 +1,9 @@
 <div id="fondo-act" class="fondo_activity">
 
-	<div class="cuadro_centro_act">
+	<div class="cuadro_centro_col">
 		<div class="row">
 			<div class="col-6">
-				<h3><%= @collection.name %></h3><br>
+				<h3 class="titulo-col"><%= @collection.name %></h3><br>
 				<img src="<%= @collection.photo.normal %>">
 			</div>
 
@@ -13,15 +13,15 @@
 				<% else %>
 					<%= link_to 'Seguir esta Colección', user_collections_path(:collection_id => @collection.id), method: :post, :class => 'btn boton-tipo' %>
 				<% end %>
-				<br><br>
-				<h5>Actividades en esta colección:</h5>
-				<ol>
+				<br><br><br><br>
+				<h5 class="titulo-col">Actividades en esta colección:</h5>
+				<ol class="color-rojo-col">
 					<% @collection.activities.each do |activity| %>
 						<li><h6><%= link_to activity.name, activity_path(activity) %>
 							<% if user_signed_in? %>
 								<% current_user.activities.each do |my_act| %>
 									<% if my_act.id == activity.id %>
-										<i>actividad realizada</i>
+										<i class="titulo-col">actividad realizada</i>
 									<% end %>
 								<% end %>
 							<% end %>
