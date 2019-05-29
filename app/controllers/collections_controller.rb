@@ -31,6 +31,7 @@ class CollectionsController < ApplicationController
   def edit
   	@collection = Collection.find(params[:id])
     @col_activities = ActivityCollection.eager_load(:activity).where(collection_id: params[:id])
+    @activities = Activity.all
   end
 
   def update

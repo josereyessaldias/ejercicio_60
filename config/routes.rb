@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :user_activities, only: [:create, :edit, :update, :destroy]
   resources :contacts, only: [:create, :destroy]
   resources :promote_activities, only: [:new, :create, :show, :destroy]
-
+  resources :activity_collections, only: [:create, :destroy]
 
   get 'pages/index'
   get 'pages/politica'

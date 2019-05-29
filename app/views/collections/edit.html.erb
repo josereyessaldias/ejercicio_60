@@ -20,9 +20,18 @@
 <% @col_activities.each do |act| %>
 	<tr>
 		<td class="elemento-edit-col"><%= link_to act.activity.name, activity_path(act.activity) %></td>
-		<td><%= link_to 'Borrar de la lista', '#', :class => 'btn boton-tipo-chico' %> </td>
+		<td><%= link_to 'Borrar de la lista', activity_collection_path(act), method: :delete, :class => 'btn boton-tipo-chico' %> </td>
 	</tr>
 <% end %>
 </table>
 <br>
 <h6>Agregar actividad:</h6>
+
+<%= form_with model: @collection, url: activity_collections_path(:collection_id => @collection.id), method: :post, local: true do |f| %>
+
+	<%= f.label :seleccionar_actividad %>
+	<%= f.collection_select :activity_id, @activities, :id, :name, :prompt => true %>
+
+	<%= f.submit "Enviar" %>
+
+<% end %>

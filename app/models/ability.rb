@@ -11,16 +11,23 @@ class Ability
         can [:manage], :all
     elsif user.player?
         can [:index, :user_calendar, :show], :all
-        can [:edit, :create, :destroy, :update, :new], [UserActivity, Collection], user_id: user.id
-        can [:update_calendar], :all, user_id: user.id
-        can [:create], Activity, user_id: user.id
-        can [:update, :edit], Activity, owner_id: user.id
         can [:manage], [Billing, PromoteActivity], user_id: user.id
+        can [:update_calendar], :all, user_id: user.id
         can [:create,:destroy], Contact, user_id: user.id
-        can [:show], Collection
-        can [:create, :destroy], UserCollection, user_id: user.id
-        can :read, ActiveAdmin::Page, name: 'Dashboard'
+
+
+        can [:manage], [UserActivity], user_id: user.id
         
+        can [:create], Activity
+
+        can [:update, :edit], [Activity], :owner_id => user.id
+        
+        can [:create, :new], Collection
+        can [:create, :destroy], UserCollection, user_id: user.id
+        can [:edit, :update, :destroy], [Collection], user: user.id
+        
+        can [:create, :destroy], [ActivityCollection], user: user.id
+        can :read, ActiveAdmin::Page, name: 'Dashboard'
         
 
     end

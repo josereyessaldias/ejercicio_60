@@ -1,0 +1,2 @@
+module ActivityCollectionsHelper
+end
