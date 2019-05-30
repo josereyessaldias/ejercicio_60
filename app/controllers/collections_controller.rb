@@ -41,7 +41,7 @@ class CollectionsController < ApplicationController
   	@collection.update(name: params[:collection][:name])
   	@collection.update(photo: params[:collection][:photo])
   	@collection.update(remote_photo_url: params[:collection][:remote_photo_url])
-  	redirect_to user_path(current_user), notice: 'collection fue editada'
+  	redirect_to collection_path(@collection), notice: 'collection fue editada'
   end
 
   def destroy

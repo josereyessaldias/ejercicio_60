@@ -18,8 +18,8 @@ class Ability
 
         can [:manage], [Billing], user_id: user.id
 
-        can [:create], Activity
-        can [:update, :edit, :destroy], Activity, owner_id: user.id
+
+        can [:create, :new, :update, :edit, :destroy], Activity, owner_id: user.id
 
         can [:manage], [UserActivity], user_id: user.id
 

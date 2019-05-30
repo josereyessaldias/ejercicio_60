@@ -8,7 +8,9 @@
 				<br>
 				<img src="<%= @collection.photo.normal %>">
 				<br><br>
-				<%= link_to 'Editar esta colección', edit_collection_path(@collection), :class => 'btn btn-sm boton-tipo' %>
+				<% if can? :edit, @collection %>
+					<%= link_to 'Editar esta colección', edit_collection_path(@collection), :class => 'btn btn-sm boton-tipo' %>
+					<% end %>
 			</div>
 
 			<div class="col-6">

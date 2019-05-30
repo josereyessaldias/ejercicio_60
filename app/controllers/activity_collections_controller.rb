@@ -7,14 +7,14 @@ class ActivityCollectionsController < ApplicationController
 		@act_collection.collection_id = params[:collection_id]
 		authorize! :create, @act_collection
 		@act_collection.save
-		redirect_to collection_path(@act_collection.collection)
+		redirect_to edit_collection_path(@act_collection.collection)
 	end
 
 	def destroy
 		@act_collection = ActivityCollection.find(params[:id])
 		authorize! :destroy, @act_collection
 		@act_collection.destroy
-		redirect_to collection_path(@act_collection.collection)
+		redirect_to edit_collection_path(@act_collection.collection)
 	end
 
 end
