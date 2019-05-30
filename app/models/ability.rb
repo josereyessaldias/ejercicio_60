@@ -10,26 +10,33 @@ class Ability
     elsif user.role == 'admin'
         can [:manage], :all
     elsif user.player?
-        can [:index, :user_calendar, :show], :all
-        can [:manage], [Billing, PromoteActivity], user_id: user.id
-        can [:update_calendar], :all, user_id: user.id
-        can [:create,:destroy], Contact, user_id: user.id
+        can [:index, :show], :all
 
+        cannot :show, PromoteActivity
+        can [:read, :destroy], PromoteActivity, user_id: user.id
+        can [:new, :create], PromoteActivity
+
+        can [:manage], [Billing], user_id: user.id
+
+        can [:create], Activity
+        can [:update, :edit, :destroy], Activity, owner_id: user.id
 
         can [:manage], [UserActivity], user_id: user.id
-        
-        can [:create], Activity
 
-        can [:update, :edit], [Activity], :owner_id => user.id
-        
         can [:create, :new], Collection
+        can [:edit, :update, :destroy], [Collection], owner_id: user.id
+
+        can [:create, :destroy], [ActivityCollection], {collection: {owner_id: user.id}}
+
         can [:create, :destroy], UserCollection, user_id: user.id
-        can [:edit, :update, :destroy], [Collection], user: user.id
+
+        can [:create,:destroy], Contact, user_id: user.id
+
+        can [:user_calendar], :all
+        can [:update_calendar], :all, user_id: user.id
         
-        can [:create, :destroy], [ActivityCollection], user: user.id
         can :read, ActiveAdmin::Page, name: 'Dashboard'
         
-
     end
         
         

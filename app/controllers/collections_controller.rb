@@ -1,5 +1,7 @@
 class CollectionsController < ApplicationController
-	authorize_resource
+	load_and_authorize_resource
+
+  
   def show
   	@collection = Collection.find(params[:id])
 

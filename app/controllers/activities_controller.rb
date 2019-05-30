@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-	authorize_resource
+	load_and_authorize_resource
 
 	def show
 		@activity = Activity.find(params[:id])
@@ -35,7 +35,7 @@ class ActivitiesController < ApplicationController
 		redirect_to root_path, notice: 'la actividad fue creada. Puede ingresarla a su registro si lo desea'
 	end
 
-	def edit	
+	def edit
 		@activity = Activity.find(params[:id])
 		@categories = Category.all
 		
@@ -43,6 +43,7 @@ class ActivitiesController < ApplicationController
 
 	def update
 		@activity = Activity.find(params[:id])
+		authorize! :uoda, @activity
 		@activity.update(name: params[:activity][:name])
 		@activity.update(author: params[:activity][:author])
 		@activity.update(category_id: params[:activity][:category_id])
