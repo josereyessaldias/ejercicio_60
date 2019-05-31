@@ -1,22 +1,15 @@
-<div class="nav-top barrita">
+<div class="nav-top row">
   
-    <div class="nav-inicio">
-      <%= link_to 'Inicio', root_path, :class => 'texto-barra' %>
-    </div>
-  
-
     <% if user_signed_in? %>
 
-        <div class="nav-topleft">
+        <div class="offset-3 col-6 ">
 
           <strong><%= link_to 'Mis Colecciones', user_path(current_user), :class => 'nav-elemento texto-barra' %></strong>
 
           <strong><%= link_to 'Mi configuración', pages_configuration_path, :class => 'nav-elemento texto-barra' %></strong>
+        </div>
 
-          <%= link_to 'Promocionar Actividad', new_promote_activity_path, :class => 'nav-elemento texto-barra' %>
-
-          <%= link_to 'Historial Promociones', promote_activity_path(current_user.id), :class => 'nav-elemento texto-barra' %>
-
+        <div class="col-3 salir">
           <%= link_to 'Salir', destroy_user_session_path, method: :delete, :class => 'nav-elemento texto-barra' %>
 
        </div>

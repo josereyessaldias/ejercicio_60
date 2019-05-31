@@ -7,7 +7,7 @@ class PromoteActivitiesController < ApplicationController
   end
 
   def new
-    @activities = Activity.all
+    @activities = Activity.where(owner_id: current_user.id)
   	@promote_activity = PromoteActivity.new
     authorize! :new, @promote_activity
   end

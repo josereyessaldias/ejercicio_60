@@ -23,19 +23,12 @@ a:hover {
 }
 
 /* barra de navegación */
-.barrita{
-	border-bottom: solid 2px rgb(2,13,54);
-	z-index: 10;
-	background-color: white;
-}
-
 
 
 .texto-barra{
 	color: rgb(196,33,61);
 }
 
-/* otros */
 
 .logo {
 	text-align: center;
@@ -54,6 +47,10 @@ a:hover {
   	top: 0;
 	padding: 7px 0 7px 0;
 	margin: 0 0 5px 0;
+	border-bottom: solid 2px rgb(2,13,54);
+	z-index: 10;
+	background-color: white;
+	text-align:center;
 }
 
 .nav-inicio {
@@ -61,16 +58,20 @@ a:hover {
 	padding: 0 0 0 16px;
 }
 
-.nav-topleft {
-	float: right;
-	display: inline;
+.salir{
+	text-align:right;
 }
-
 .nav-elemento{
 	padding: 0 12px 0 12px;
 }
 
 /*  esto son estilos de index*/
+
+.crear {
+	text-align:center;
+	font-weight: bold;
+}
+
 .foto-index {
 	border-radius: 6px;
 	margin: 0 0 10px 0;
@@ -225,6 +226,43 @@ a:hover {
 .elemento-edit-col{
 	width: 60%;
 	padding: 0 0 0 10px;
+}
+
+/* configuration */
+
+.elemento-config{
+	width: 60%;
+	padding: 0 0 0 10px;
+}
+
+.titulo-config{
+	text-align:center;
+}
+
+.boton-config-titulo {
+	color: white;
+	background-color: rgb(196,33,61);
+	height: 24px;
+	line-height: 10px;
+	font-size: 12px;
+}
+
+.boton-config {
+	color: white;
+	background-color: rgb(18,72,92);
+	height: 24px;
+	line-height: 12px;
+	font-size: 12px;
+}
+
+
+
+/* promoción actividades */
+.cuadro-promo{
+	text-align:center;
+	border: solid 2px rgb(2,13,54);
+	padding: 20px 0 20px 0;
+
 }
 
 @media (max-width:800px) {

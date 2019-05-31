@@ -1,14 +1,49 @@
-
-
-<h5>configuración de <%= @user.name %></h5>
 <br>
-<h6>Actividades creadas por <%= @user.name %>:</h6>
-<table>
-	<% @user.ownactivity.each do |act| %>
-		<tr>
-			<td class="elemento-edit-col"><%= link_to act.name, activity_path(act) %></td>
-			<td><%= link_to 'editar actividad', edit_activity_path(act), :class => 'btn boton-tipo-chico' %></td>
-			<td><%= link_to 'borrar actividad', activity_path(act), method: :delete, :class => 'btn boton-tipo-chico' %></td>
-		</tr>
-	<% end %>
-</table>
+<div class="titulo-config">
+	<h5>Configuración de <%= @user.name %></h5>
+	<br>
+	<%= link_to 'Ir a datos de la cuenta', edit_user_registration_path, :class => 'btn boton-config-titulo' %><br><br>
+	<%= link_to 'Promocionar mis Actividades/Colecciones', new_promote_activity_path, :class => 'btn boton-config-titulo' %>
+	<%= link_to 'Ver mis Promociones', promote_activity_path(@user.id), :class => 'btn boton-config-titulo' %>
+</div>
+<br><br>
+
+	
+<div class="row">
+	<div class="col-6">
+		<h6>Actividades creadas por <%= @user.name %>:</h6>
+		<table class="table">
+			<%if @user.ownactivity == [] %>
+				<br><p><%= @user.name %> no ha creado actividades</p>
+			<% else %>
+				<% @user.ownactivity.each do |act| %>
+					<tr>
+						<td class="elemento-config"><%= link_to act.name, activity_path(act) %></td>
+						<td><%= link_to 'editar', edit_activity_path(act), :class => 'btn boton-config' %></td>
+						<td><%= link_to 'borrar', activity_path(act), method: :delete, :class => 'btn boton-config' %></td>
+						<td></td>
+					</tr>
+				<% end %>
+			<% end %>
+		</table>
+	</div>
+
+	<div class="col-6">
+		<table class="table">
+			<%if @user.owncollection == [] %>
+				<br><p><%= @user.name %> no ha creado colecciones</p>
+			<% else %>
+				<h6>Colecciones creadas por <%= @user.name %>:</h6>
+				
+
+				<% @user.owncollection.each do |col| %>
+					<tr>
+						<td class="elemento-config"><%= link_to col.name, collection_path(col) %></td>
+						<td><%= link_to 'editar', edit_collection_path(col), :class => 'btn boton-config' %></td>
+						<td><%= link_to 'borrar', collection_path(col), method: :delete, :class => 'btn boton-config' %></td>
+					</tr>
+				<% end %>
+			<% end %>
+		</table>
+	</div>
+</div>

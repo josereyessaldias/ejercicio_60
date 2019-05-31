@@ -1,17 +1,22 @@
-<h3>Crear Promociones de <%= current_user.name %></h3><br>
+<br><br>
+<div class="col-8 offset-2 cuadro-promo">
+	<h5>Promociones de <%= current_user.name %></h5><br>
+	<p>Cada usuario puede promocionar sus actividades. Por cada $100 pesos chilenos (cien CLP) gastados en promocionar la actividad, ésta aparecerá durante 1 día</p>
+	<br>
+	<h6>Elija una actividad o coleción a promocionar</h6>
+	<br>
 
-<h5>Elija una actividad a promocionar</h5>
+	<% if user_signed_in? %>
+		<%= form_with model: @promote_activity, url: promote_activities_path, method: :post, local: true do |f| %>
 
-<% if user_signed_in? %>
-	<%= form_with model: @promote_activity, url: promote_activities_path, method: :post, local: true do |f| %>
+			<%= f.label :ítem %>
+			<%= f.collection_select :activity_id, @activities, :id, :name, :prompt => true %>
 
-		<%= f.label :activity %>
-		<%= f.collection_select :activity_id, @activities, :id, :name, :prompt => true %><br>
+			<%= f.label :monto_a_promocionar %>
+			<%= f.number_field :amount, :class => 'text_field', :step => 0.5 %><br><br>
 
-		<%= f.label :monto_a_promocionar %>
-		<%= f.number_field :amount, :class => 'text_field', :step => 0.5 %><br>
+			<%= f.submit "Enviar" %>
 
-		<%= f.submit "Enviar" %>
-
+		<% end %>
 	<% end %>
-<% end %>
+</div>
