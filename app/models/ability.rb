@@ -10,7 +10,8 @@ class Ability
     elsif user.role == 'admin'
         can [:manage], :all
     elsif user.player?
-        can [:index, :show], :all
+        can [:index, :show, :configuration], :all
+
 
         cannot :show, PromoteActivity
         can [:read, :destroy], PromoteActivity, user_id: user.id

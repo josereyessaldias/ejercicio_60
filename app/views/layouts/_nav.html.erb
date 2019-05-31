@@ -9,7 +9,9 @@
 
         <div class="nav-topleft">
 
-          <strong><%= link_to current_user.name, user_path(current_user), :class => 'nav-elemento texto-barra' %></strong>
+          <strong><%= link_to 'Mis Colecciones', user_path(current_user), :class => 'nav-elemento texto-barra' %></strong>
+
+          <strong><%= link_to 'Mi configuración', pages_configuration_path, :class => 'nav-elemento texto-barra' %></strong>
 
           <%= link_to 'Promocionar Actividad', new_promote_activity_path, :class => 'nav-elemento texto-barra' %>
 

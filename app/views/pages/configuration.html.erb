@@ -1,0 +1,14 @@
+
+
+<h5>configuración de <%= @user.name %></h5>
+<br>
+<h6>Actividades creadas por <%= @user.name %>:</h6>
+<table>
+	<% @user.ownactivity.each do |act| %>
+		<tr>
+			<td class="elemento-edit-col"><%= link_to act.name, activity_path(act) %></td>
+			<td><%= link_to 'editar actividad', edit_activity_path(act), :class => 'btn boton-tipo-chico' %></td>
+			<td><%= link_to 'borrar actividad', activity_path(act), method: :delete, :class => 'btn boton-tipo-chico' %></td>
+		</tr>
+	<% end %>
+</table>

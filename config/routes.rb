@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :activity_collections, only: [:create, :destroy]
 
   get 'pages/index'
+  get 'pages/configuration'
   get 'pages/politica'
 
   get 'user_calendar/:id', to: 'user#user_calendar', as: 'user_calendar'

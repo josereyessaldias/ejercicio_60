@@ -58,6 +58,10 @@ class ActivitiesController < ApplicationController
 	end
 
 	def destroy
+		@activity = Activity.find(params[:id])
+		authorize! :destroy, @activity
+		@activity.destroy
+		redirect_to pages_configuration_path, notice: 'la actividad fue borrada'
 	end
 	
 end
