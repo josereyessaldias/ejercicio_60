@@ -13,8 +13,7 @@ class Ability
         can [:index, :show, :configuration], :all
 
 
-        cannot :show, PromoteActivity
-        can [:read, :destroy], PromoteActivity, user_id: user.id
+        can [:destroy], PromoteActivity, user_id: user.id
         can [:new, :create], PromoteActivity
 
         can [:manage], [Billing], user_id: user.id
