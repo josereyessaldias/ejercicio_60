@@ -1,4 +1,24 @@
+<% if params[:q].present? %>
+  <% @entities = Activity.where('name like ?', "%#{params[:q]}%") + Collection.where('name like ?', "%#{params[:q]}%") %>
+<% else %>
+  <% @entities = [] %>
+<% end %>
+
+
+
 <div class="nav-top row">
+
+    <div class="col-3 buscador">
+
+      <form>
+        <input name="q" placeholder="Buscar..." id="buscar">
+      </form>
+
+      <div id="resultado">
+        <%= render 'pages/activity' %>
+      </div>
+      
+    </div>
   
     <% if user_signed_in? %>
 
@@ -26,3 +46,19 @@
 
   
 </div>
+
+
+
+<script>
+  $("[name=q]").keyup(function(event){
+    if($(this).val().length > 2 || $(this).val().length == 0){
+      $.ajax({
+        url: '<%= pages_index_path %>',
+        type: 'GET',
+        dataType: 'script',
+        data: {q: $(this).val()
+      }
+
+    })}
+  })
+</script>
