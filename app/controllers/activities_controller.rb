@@ -1,8 +1,9 @@
 class ActivitiesController < ApplicationController
-	load_and_authorize_resource
+	
 
 	def show
 		@activity = Activity.find(params[:id])
+		authorize! :show, @activity
 		if user_signed_in?
 			@user_act = UserActivity.where(user_id: current_user.id,activity_id: @activity.id)
 			if @user_act != []
@@ -21,7 +22,9 @@ class ActivitiesController < ApplicationController
 
 	def new
 		@activity = Activity.new
+		authorize! :new, @activity
 		@categories = Category.all
+
 	end
 
 	def create
@@ -31,19 +34,21 @@ class ActivitiesController < ApplicationController
 		@activity.photo = params[:activity][:photo]
 		@activity.remote_photo_url = params[:activity][:remote_photo_url]
 		@activity.owner_id = current_user.id
+		authorize! :create, @activity
 		@activity.save
 		redirect_to root_path, notice: 'la actividad fue creada. Puede ingresarla a su registro si lo desea'
 	end
 
 	def edit
 		@activity = Activity.find(params[:id])
+		authorize! :edit, @activity
 		@categories = Category.all
 		
 	end
 
 	def update
 		@activity = Activity.find(params[:id])
-		authorize! :uoda, @activity
+		authorize! :update, @activity
 		@activity.update(name: params[:activity][:name])
 		@activity.update(author: params[:activity][:author])
 		@activity.update(category_id: params[:activity][:category_id])
@@ -52,6 +57,7 @@ class ActivitiesController < ApplicationController
     	redirect_to user_path(current_user)
 	end
 
-	
+	def destroy
+	end
 	
 end

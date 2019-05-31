@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :collections, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :user_collections, only: [:create, :destroy]
   resources :user, only: [:show]
-  resources :activities, only: [:create, :new, :show, :edit, :update]
+  resources :activities, only: [:create, :new, :show, :edit, :update, :destroy]
   resources :user_activities, only: [:create, :edit, :update, :destroy]
   resources :contacts, only: [:create, :destroy]
   resources :promote_activities, only: [:new, :create, :show, :destroy]
