@@ -27,7 +27,7 @@ def abrir_seed(seed)
 	end
 
 	noti.each do |i|
-		i[6].delete!("\n")
+		i[-1].delete!("\n")
 	end
 end
 
