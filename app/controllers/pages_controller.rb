@@ -24,8 +24,15 @@ class PagesController < ApplicationController
 
 
     @promotes = Activity.eager_load(:category).sample(2)
-    PromoteActivity.eager_load(activity: :category).where(payed: true).each do |promote|
-      @promotes << promote.activity
+    PromoteActivity.eager_load(activity: :category).eager_load(:billing).where(payed: true).each do |promote|
+      if Time.now.utc.to_i/(3600) < promote.billing.updated_at.to_i/(3600) + promote.amount/4
+        @promotes << promote.activity
+      end
+    end
+    if @promotes.size < 6
+      @promotes = @promotes.sample(@promotes.size)
+    else
+      @promotes = @promotes.sample(6)
     end
     
   

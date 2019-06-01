@@ -30,7 +30,7 @@ class UserController < ApplicationController
       @user_collections = UserCollection.eager_load(:collection).where(user_id: params[:id]).order(:created_at).reverse
     end
 
-    @my_activities = UserActivity.where(user_id: current_user.id, status: "realizada")
+    @my_activities = UserActivity.where(user_id: @user.id, status: "realizada")
 
     if user_signed_in?
       if current_user.contacting.find_by(followed_id: @user.id) != nil

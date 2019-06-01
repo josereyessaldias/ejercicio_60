@@ -54,14 +54,16 @@
 	</div>
 
 
-	<div class="col-12 col-md-7">
-		<h6 style="text-align:center">Actividades por año</h6>
-		<%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
-		<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-		
-		<%= line_chart @my_activities.group(:category).group_by_month(:start).count, height:"240px" %>
+	<% if @my_activities != [] %>
+		<div class="col-12 col-md-7">
+			<h6 style="text-align:center">Actividades por año</h6>
+			<%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
+			<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+			
+			<%= line_chart @my_activities.group(:category).group_by_year(:start).count, height:"240px" %>
+		</div>
+	<% end %>
 
-	</div>
 </div>
 <br>
 <hr>
