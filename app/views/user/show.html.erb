@@ -7,24 +7,28 @@
 
 
 <div class="row">
-	<div class="col-md-5 row recuadro-user-resumen">
-		<div class="foto-user col-5">
-			<img src="<%= @user.photo.normal %>" class="foto_usuario"> 
-		</div>
-		<div class="col-7 mt-5">
-			<% @cats_user_done.each do |category| %>
-				<p>Total de <%= category.sustantivo %> que <%= category.past %>:
-					<%= @my_activities.where(category: category.name).count %></p>
-			<% end %>
-			
-		</div>
+	<div class="col-5 row recuadro-user-resumen">
+
+			<div class="foto-user col-5">
+				<img src="<%= @user.photo.normal %>" class="foto_usuario"> 
+			</div>
+			<div class="col-7 mt-5">
+				<% @cats_user_done.each do |category| %>
+					<ul>
+					<li class="listado-user"><strong>Total de <%= category.sustantivo %> que <%= category.past %>:
+						<%= @my_activities.where(category: category.name).count %></strong></li>
+					</ul>
+				<% end %>
+				
+			</div>
+
 	</div>
 	<div class="col-7">
-		<h6 style="text-align:center" class="mt-1 mb-2">Colecciones</h6>
+		<h6 class="div-coleccion mt-1 mb-2">Colecciones</h6>
 		<div class="row">
 			<% @user_collections.each do |coll| %>
 
-				<div class="col-4 recuadro-coleccion ml-2">
+				<div class="col-4 recuadro-coleccion">
 					<img src="<%= coll.collection.photo.normal %>" class="foto-coleccion"><br>
 					<%= link_to coll.collection.name, collection_path(coll.collection), :class => "coleccion-nombre" %>
 				</div>

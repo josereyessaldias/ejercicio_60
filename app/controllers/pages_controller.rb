@@ -11,7 +11,11 @@ class PagesController < ApplicationController
     end
 
     if params[:q].present?
-      @entities = Activity.where('name like ?', "%#{params[:q]}%") + Collection.where('name like ?', "%#{params[:q]}%")
+      if Rails.env.production?
+        @entities = Activity.where('name ilike ?', "%#{params[:q]}%") + Collection.where('name like ?', "%#{params[:q]}%")
+      else
+        @entities = Activity.where('name like ?', "%#{params[:q]}%") + Collection.where('name like ?', "%#{params[:q]}%")
+      end
     else
       @entities = []
     end
@@ -29,11 +33,9 @@ class PagesController < ApplicationController
         @promotes << promote.activity
       end
     end
-    if @promotes.size < 6
-      @promotes = @promotes.sample(@promotes.size)
-    else
-      @promotes = @promotes.sample(6)
-    end
+    
+    @promotes = @promotes.sample(6)
+    
     
   
     

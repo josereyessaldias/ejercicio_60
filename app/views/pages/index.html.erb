@@ -33,7 +33,7 @@
 		<br>
 		<h5>Otros Usuarios registrados</h5>
 		<% if user_signed_in? %>
-			<% @users.each do |user| %>
+			<% @users.sample(8).each do |user| %>
 				<div class="collection_index">
 					<img src="<%= user.photo.thumb %>" >
 					<%= link_to user.name, user_path(user) %> <br>
@@ -50,7 +50,13 @@
 					<img src="<%= evento.user.photo.thumb %>" class="foto-index">
 				</div>
 				<div class="col-9">
-					<p class="texto-index"><strong><%= link_to evento.user.name, user_path(evento.user_id) %></strong> <%= evento.activity.category.past %>
+					<p class="texto-index"><strong><%= link_to evento.user.name, user_path(evento.user_id) %></strong>
+						<% if evento.status == "realizada" %>
+							<%= evento.activity.category.past %>
+						<% else %>
+							<%= evento.activity.category.futuro %>
+						<% end %>
+						
 					<%= link_to evento.activity.name, activity_path(evento.activity.id) %><br>
 					Categoría: <%= evento.activity.category.sustantivo %></p>
 				</div>
