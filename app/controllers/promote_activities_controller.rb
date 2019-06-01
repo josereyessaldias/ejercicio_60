@@ -2,7 +2,7 @@ class PromoteActivitiesController < ApplicationController
   
   def index
   	@user = User.find(current_user.id)
-  	@promotes = PromoteActivity.where(user_id: current_user.id)
+  	@promotes = PromoteActivity.eager_load(:billing).eager_load(:activity).where(user_id: current_user.id)
     authorize! :index, @user
   end
 

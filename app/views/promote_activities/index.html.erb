@@ -5,6 +5,8 @@
 		<th>Producto</th>
 		<th>Precio</th>
 		<th>¿Pagada?</th>
+		<th>Fecha Pago</th>
+		<th>Status</th>
 		<th></th>
 	</thead>
 		<tbody>
@@ -19,14 +21,23 @@
 						Pendiente de pago
 					<% end %>
 				</td>
-				<td>
-					<% if promote.payed? %>
+				<% if promote.payed? %>
+						<td> <%= promote.billing.updated_at %> </td>
+						<td>
+							<% if Time.now.utc.to_i/(3600) < promote.billing.updated_at.to_i/(3600) + promote.amount/4 %>
+								Quedan <%= promote.billing.updated_at.to_i/(3600) - Time.now.utc.to_i/(3600) + promote.amount/4 %> horas de promoción
+							<% else %>
+								Promoción finalizada
+							<% end %>
+						</td>
+						<td></td>
+						<td></td>
 					<% else %>
-						<%= link_to 'Borrar promoción', promote_activity_path(promote.id), method: :delete %>
-					<% end %>	
-				</td>
+						<td>-</td>
+						<td><%= link_to 'Borrar promoción', promote_activity_path(promote.id), method: :delete %></td>
+				<% end %>	
 			</tr>
 		<% end %>
 	</tbody>
 </table>
-<td><%= link_to 'Promocionar Todo', pre_pay_billings_path, :class => 'btn btn-sm btn-success float-right' %>
+<td><%= link_to 'Promocionar Todo', pre_pay_billings_path, :class => 'btn boton-config-titulo float-right' %>
