@@ -13,7 +13,8 @@
 		</div>
 		<div class="col-7 mt-5">
 			<% @cats_user_done.each do |category| %>
-				<p>Total de <%= category.sustantivo %> que <%= category.past %>: #</p>
+				<p>Total de <%= category.sustantivo %> que <%= category.past %>:
+					<%= @my_activities.where(category: category.name).count %></p>
 			<% end %>
 			
 		</div>
@@ -58,9 +59,7 @@
 		<%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
 		<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 		
-		<% my_chart = UserActivity.where(user_id: @user.id).group_by_year(:start).count %>
-
-		<%= line_chart my_chart, height: "240px" %>
+		<%= line_chart @my_activities.group(:category).group_by_month(:start).count, height:"240px" %>
 
 	</div>
 </div>

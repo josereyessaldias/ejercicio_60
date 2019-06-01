@@ -1,8 +1,10 @@
 
-<div class="crear">
-	<%= link_to 'Crear nueva Actividad', new_activity_path %> | 
-	<%= link_to 'Crear nueva Colección', new_collection_path %><br>
-</div>
+<% if user_signed_in? %>
+	<div class="crear">
+		<%= link_to 'Crear nueva Actividad', new_activity_path %> | 
+		<%= link_to 'Crear nueva Colección', new_collection_path %><br>
+	</div>
+<% end %>
 
 <br><br>
 

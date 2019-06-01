@@ -6,6 +6,7 @@ class UserActivitiesController < ApplicationController
   @user_activity.activity_id = params[:activity_id]
   @user_activity.status = params[:status]
   @user_activity.title = "#{Activity.find(params[:activity_id]).category.name}: #{Activity.find(params[:activity_id]).name}"
+  @user_activity.category = Activity.find(params[:activity_id]).category.name
   authorize! :create, @user_activity
   @user_activity.save
   redirect_to edit_user_activity_path(@user_activity.id)
