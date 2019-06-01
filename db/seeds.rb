@@ -11,11 +11,13 @@ Category.destroy_all
 User.destroy_all
 Activity.destroy_all
 Collection.destroy_all
+AdminUser.destroy_all
+ActivityCollection.destroy_all
 
 
 require 'csv'
 
-
+noti = []
 def abrir_seed(seed)
 	archivo = File.open(Rails.root.join('lib',seed), 'r:iso-8859-1')
 	notas = archivo.readlines
@@ -32,7 +34,7 @@ def abrir_seed(seed)
 end
 
 
-noti = []
+
 abrir_seed('category_seed.csv')
 noti.each do |i|
 	Category.create(name:i[0].to_s,past:i[1].to_s,sustantivo:i[2].to_s,participio:i[3].to_s,futuro:i[4].to_s)		
