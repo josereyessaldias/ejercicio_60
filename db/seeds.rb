@@ -37,20 +37,23 @@ def abrir_seed(seed,base)
 		noti.each do |i|
 			base.create(name:i[0].to_s,past:i[1].to_s,sustantivo:i[2].to_s,participio:i[3].to_s,futuro:i[4].to_s)		
 		end
+		
 	elsif base == User
 		noti.each do |i|
 			base.create(name:i[0].to_s,email:i[1].to_s,password:i[2].to_s,remote_photo_url:i[3].to_s)		
-		end
-
-	elsif base == Collection
-		noti.each do |i|
-			base.create(name:i[0].to_s,remote_photo_url:i[1].to_s,owner_id:i[2].to_i)		
 		end
 
 	elsif base == Activity
 		noti.each do |i|
 			base.create(name:i[0].to_s,owner_id:i[2].to_i,category_id:i[3].to_i,remote_photo_url:i[4].to_s,latitude:i[5].to_f,longitude:i[6].to_f)		
 		end
+
+
+	elsif base == Collection
+		noti.each do |i|
+			base.create(name:i[0].to_s,remote_photo_url:i[1].to_s,owner_id:i[2].to_i)		
+		end
+	
 
 	elsif base == ActivityCollection
 		noti.each do |i|
