@@ -34,6 +34,8 @@ class ActivitiesController < ApplicationController
 		@activity.photo = params[:activity][:photo]
 		@activity.remote_photo_url = params[:activity][:remote_photo_url]
 		@activity.owner_id = current_user.id
+		@activity.latitude = params[:activity][:latitude]
+		@activity.longitude = params[:activity][:longitude]
 		authorize! :create, @activity
 		@activity.save
 		redirect_to root_path, notice: 'la actividad fue creada. Puede ingresarla a su registro si lo desea'
@@ -54,6 +56,8 @@ class ActivitiesController < ApplicationController
 		@activity.update(category_id: params[:activity][:category_id])
 		@activity.update(photo: params[:activity][:photo])
 		@activity.update(remote_photo_url: params[:activity][:remote_photo_url])
+		@activity.update(latitude: params[:activity][:latitude])
+		@activity.update(longitude: params[:activity][:longitude])
     	redirect_to user_path(current_user)
 	end
 

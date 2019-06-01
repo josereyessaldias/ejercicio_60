@@ -14,6 +14,15 @@
 	    <%= f.file_field :photo %>
 	    <%= f.text_field :remote_photo_url %><br>
 
+	    <br>
+	    <i>Si la actividad es Trekking, agregar la ubicación:<br>
+	    (utilizando punto como separador decimal)</i><br>
+	    <%= f.label :latitude %>
+		<%= f.text_field :latitude %>	<br>
+
+		<%= f.label :longitude %>
+		<%= f.text_field :longitude %>	<br>
+
 		<%= f.submit "Enviar" %>
 
 	<% end %>

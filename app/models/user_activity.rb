@@ -2,8 +2,9 @@ class UserActivity < ApplicationRecord
   belongs_to :user
   belongs_to :activity
 
-  attribute :start, :datetime, default: Time.now, presence: true
-
+  attribute :start, :datetime, default: Time.now
+  validates :start, presence: true
+  
   validates :user_id, uniqueness: { scope: :activity_id,
     message: "Error" }
 
