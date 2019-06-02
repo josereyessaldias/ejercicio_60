@@ -3,7 +3,7 @@
 ## 1. Contexto
 La presente aplicación, desarrollada en Ruby on Rails y denominada "Collections", corresponde al proyecto final del curso Full Stack, generación XVI, de la academia Desafío Latam.
 
-El desarrollo del proyecto, desde su fase de idea hasta la presente versión comenzó a ser trabajada el día 17 de marzo de 2019. Se presentó públicamente una versión preliminar el 2 de mayo de 2019, mientras que la versión actual tiene fecha de 2 de junio de 2019.
+El desarrollo del proyecto, desde su fase de idea hasta la presente versión comenzó a ser trabajada el día 17 de marzo de 2019. Se presentó públicamente una versión preliminar el 6 de mayo de 2019, mientras que la versión actual tiene fecha de 2 de junio de 2019.
 
 La presente versión incorpora prácticamente todas las funcionalidades requeridas en los desafíos que hicieron explícita referencia al proyecto final (en general, hubo dos desafíos cada semana, desde la semana 18 hasta la semana 30, con algunas salvedades). Sólo hubo una funcionalidad que no se implementó, que corresponde a los testing.
 
@@ -57,6 +57,8 @@ Para correr en el servidor local se debe realizar lo siguiente:
 En Heroku se encuentra una versión en el siguiente enlace: https://ejercicio60.herokuapp.com
 
 Es posible crear un usuario para utilizar la aplicación o utilizar uno ya existente por medio de facebook.
+
+Video demostrativo: https://youtu.be/Ht3_0C7DrBU
 
 ### Seed
 El seed cuenta con los siguientes datos:
