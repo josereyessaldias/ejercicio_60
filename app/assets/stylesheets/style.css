@@ -179,7 +179,7 @@ a:hover {
 }
 
 .listado-user{
-	line-height: 0.5;
+	line-height: 0.8;
 }
 
 .div-coleccion{
@@ -299,13 +299,33 @@ a:hover {
 
 @media (max-width:800px) {
 
+	.buscador {
+	text-align:left;
+	position: absolute;
+	left: 0px;
+	top: 30px;
+	padding: 0 0 0 0px;
+	}
+
 
 	.barrita{
 		display: none;
 	}
 	.titulo-user{
-	
-	margin: 20px 0 0 0;
-	border: solid 1px rgb(2,13,54);
-}
+	position: relative;
+	top:6px;
+	left:0px;
+	}
+
+	.letra-circulo{
+	display: none;
+	}
+
+	.nombre-user{
+		font-size: 14px;
+	}
+
+
+
+
 }

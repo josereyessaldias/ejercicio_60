@@ -2,7 +2,7 @@
 
 	<div class="cuadro_centro_col">
 		<div class="row">
-			<div class="col-6">
+			<div class="col-12 col-md-6">
 				<h3 class="titulo-col"><%= @collection.name %></h3>
 				<p class="titulo-col">Propietario de esta colección: <%= link_to @collection.user.name, user_path(@collection.user) %></p>
 				<br>
@@ -20,7 +20,7 @@
 				<% end %>
 			</div>
 
-			<div class="col-6">
+			<div class="col-12 col-md-6">
 				<% if @registrada %>
 					<%= link_to 'Dejar de seguir esta Colección', user_collection_path(@collection.id), method: :delete, :class => 'btn boton-tipo' %>
 				<% else %>

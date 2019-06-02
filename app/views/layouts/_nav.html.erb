@@ -22,20 +22,20 @@
   
     <% if user_signed_in? %>
 
-        <div class="offset-3 col-6 ">
+        <div class="offset-0 col-12 offset-md-3 col-md-6">
 
           <strong><%= link_to 'Mis Colecciones', user_path(current_user), :class => 'nav-elemento texto-barra' %></strong>
 
           <strong><%= link_to 'Mi configuración', pages_configuration_path, :class => 'nav-elemento texto-barra' %></strong>
         </div>
 
-        <div class="col-3 salir">
+        <div class="offset-4 offset-md-0 col-md-3 salir">
           <%= link_to 'Salir', destroy_user_session_path, method: :delete, :class => 'nav-elemento texto-barra' %>
 
        </div>
     <% else %>
 
-      <div class="col-6 offset-6 nav-topleft">
+      <div class="col-12 offset-0 col-md-6 offset-md-6 nav-topleft">
 
         <%= link_to 'Ingresar', new_user_session_path, :class => 'nav-elemento texto-barra' %>
 
