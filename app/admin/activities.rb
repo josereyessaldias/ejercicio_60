@@ -39,6 +39,8 @@ ActiveAdmin.register Activity do
 			input :author
 			input :category
 			input :user
+			input :latitude
+			input :longitude
 		end
 		actions
 	end
