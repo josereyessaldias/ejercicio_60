@@ -12,7 +12,7 @@ class PagesController < ApplicationController
 
     if params[:q].present?
       if Rails.env.production?
-        @entities = Activity.where('name ilike ?', "%#{params[:q]}%") + Collection.where('name like ?', "%#{params[:q]}%")
+        @entities = Activity.where('name ilike ?', "%#{params[:q]}%") + Collection.where('name ilike ?', "%#{params[:q]}%")
       else
         @entities = Activity.where('name like ?', "%#{params[:q]}%") + Collection.where('name like ?', "%#{params[:q]}%")
       end
