@@ -11,7 +11,7 @@ Vale mencionarse además, que, si bien la evaluación del Proyecto Final contó 
 
 Por motivos ajenos al desarrollo del curso, el avance en el Proyecto Final no se correspondió con el ritmo semanal en que se presentaron los desafíos, sino que hubo un constante desfase, cuyo origen se remontó a las semana 13 del curso. No por ello, sin embargo, se dejó de superar cada uno de los desafíos de manera estrictamente cronológica.
 
-Ésta probablemente sea la última versión de la aplicación cuyo desarrollo quede registrado de manera sistemática. Lo cual, ciertamente, no quiere decir que se desarrollo vaya a dejarse de realizar.
+Ésta probablemente sea la última versión de la aplicación cuyo desarrollo quede registrado de manera sistemática. Lo cual, ciertamente, no quiere decir que su desarrollo no prosiga en el futuro.
 
 
 ## 2. Descripción de la aplicación:
@@ -26,9 +26,9 @@ Ligado a lo anterior, y como manera de facilitar la organización de las propias
 #### Tablero Trello
 El tablero ágil en Trello se encuentra en: https://trello.com/b/1MhorCs0/proyecto-final-dl
 
-Vale mencionar que el tablero ágil de Trello no se utilizó para el desarrollo de la aplicación. Para una instancia de aprendizaje y de trabajo individual, el tablero tablero ágil no pareció ser un aporte. Por lo tanto, sólo se elaboró con el objeto de cumplir lo solicitado.
+Vale mencionar que el tablero ágil de Trello no se utilizó para el desarrollo de la aplicación. Para una instancia de aprendizaje y de trabajo individual, el tablero tablero ágil no pareció ser un aporte. Por lo tanto, éste fue elaborado sólo con el objeto de cumplir lo que se solicitó.
 
-De entre las tareas incluidas en el tablero ágil únicamente no se implementó la posibilidad para un usuario de definir su nivel de privacidad.
+De cualquier modo, vale decir que entre las tareas incluidas en el tablero ágil únicamente no se implementó la referida a la posibilidad de definir el nivel de privacidad por parte de cada usuario.
 
 #### Modelo Físico
 El modelo físico del proyecto se puede revisar en el siguiente enlace:
@@ -110,6 +110,7 @@ gem 'groupdate'
 
 gem 'bullet', group: 'development'
 
+
 Se instalaron los siguientes yarns
 
 underscore
@@ -122,7 +123,8 @@ jquery-backstretch
 
 moment
 
+
 Todas las gemas y yarns están en uso.
 
 ### Panel de Administración
-Para ingresar al panel de administración, tanto en Servidor Local como en Heroku, se debe ingresar después del dominio el texto "/admin"
+Para ingresar al panel de administración, tanto en Servidor Local como en Heroku, se debe ingresar en la url después del dominio el texto "/admin"
