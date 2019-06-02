@@ -2,10 +2,15 @@
 
 ## 1. Contexto
 La presente aplicación, desarrollada en Ruby on Rails y denominada "Collections", corresponde al proyecto final del curso Full Stack, generación XVI, de la academia Desafío Latam.
+
 El desarrollo del proyecto, desde su fase de idea hasta la presente versión comenzó a ser trabajada el día 17 de marzo de 2019. Se presentó públicamente una versión preliminar el 2 de mayo de 2019, mientras que la versión actual tiene fecha de 2 de junio de 2019.
+
 La presente versión incorpora prácticamente todas las funcionalidades requeridas en los desafíos que hicieron explícita referencia al proyecto final (en general, hubo dos desafíos cada semana, desde la semana 18 hasta la semana 30, con algunas salvedades). Sólo hubo una funcionalidad que no se implementó, que corresponde a los testing.
+
 Vale mencionarse además, que, si bien la evaluación del Proyecto Final contó con una pauta explicativa, se optó por no seguir los linemiento de dicha pauta de manera directa. Ello debido a que sus directrices no se condijeron necesariamente con el desarrollo de los desafíos y, no pocas veces, sus indicaciones terminaron provocando confusión.
+
 Por motivos ajenos al desarrollo del curso, el avance en el Proyecto Final no se correspondió con el ritmo semanal en que se presentaron los desafíos, sino que hubo un constante desfase, cuyo origen se remontó a las semana 13 del curso. No por ello, sin embargo, se dejó de superar cada uno de los desafíos de manera estrictamente cronológica.
+
 Ésta probablemente sea la última versión de la aplicación cuyo desarrollo quede registrado de manera sistemática. Lo cual, ciertamente, no quiere decir que se desarrollo vaya a dejarse de realizar.
 
 
@@ -22,6 +27,7 @@ Ligado a lo anterior, y como manera de facilitar la organización de las propias
 El tablero ágil en Trello se encuentra en: https://trello.com/b/1MhorCs0/proyecto-final-dl
 
 Vale mencionar que el tablero ágil de Trello no se utilizó para el desarrollo de la aplicación. Para una instancia de aprendizaje y de trabajo individual, el tablero tablero ágil no pareció ser un aporte. Por lo tanto, sólo se elaboró con el objeto de cumplir lo solicitado.
+
 De entre las tareas incluidas en el tablero ágil únicamente no se implementó la posibilidad para un usuario de definir su nivel de privacidad.
 
 #### Modelo Físico
@@ -29,56 +35,89 @@ El modelo físico del proyecto se puede revisar en el siguiente enlace:
 https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1#G1D_ex3tVyxt4DwaKidVhGZXMzXg7wdAjy
 
 Técnicamente, no es un modelo físico acabado, pues no incluye el tipo de dato. No obstante, incluye las relaciones existentes, de lo cuales factible inferir las claves prinicipales y fóraneas.
+
 Además, Dentro del diagrama, las tablas marcadas en rojo no se implementaron
 
 
 ## 2. Correr la apliación
 ### Servidor Local
 Para correr en el servidor local se debe realizar lo siguiente:
+
 1 Descargar repositorio en github, ubicado en: https://github.com/josereyessaldias/ejercicio_60
+
 2 Escribir las correspondiente variables de entorno para AWS, PAYPAL y FACEBOOK.
+
 3 En la carpeta del proyecto, correr 'yarn install'
+
 4 Correr 'rails db:migrate'
+
 5 Correr 'rails db:seed'
 
 ### Heroku
 En Heroku se encuentra una versión en el siguiente enlace: https://ejercicio60.herokuapp.com
+
 Es posible crear un usuario para utilizar la aplicación o utilizar uno ya existente por medio de facebook.
 
 ### Seed
 El seed cuenta con los siguientes datos:
+
 User: 4 usuarios
+
 Activity: 52 actividades
+
 Category: 3 categorías
+
 Collection: 4 colecciones
+
 ActivityCollection: 32 asociaciones
+
 AdminUser: 1 administrador
 
 ### Versiones, Gemas y Yarns
 La aplicación fue desarrollada en Ruby 2.5.1 y en Rails 5.2.3
 
 Se instalaron las siguientes gemas:
-em 'fog-aws'
+
+gem 'fog-aws'
+
 gem 'carrierwave'
+
 gem 'mini_magick'
+
 gem 'paypal-sdk-rest'
+
 gem 'geocoder'
+
 gem 'gmaps4rails'
+
 gem 'sqlite3', '~> 1.3.6', group: :development
+
 gem 'pg', group: :production
+
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
+
 gem 'omniauth-facebook'
+
 gem 'cancancan'
+
 gem 'activeadmin'
+
 gem 'chartkick'
+
 gem 'groupdate'
+
 gem 'bullet', group: 'development'
 
 Se instalaron los siguientes yarns
+
 underscore
+
 bootstrap4-datetimepicker
+
 fullcalendar
+
 jquery-backstretch
+
 moment
 
 Todas las gemas y yarns están en uso.
