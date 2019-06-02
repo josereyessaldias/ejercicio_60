@@ -4,26 +4,26 @@
 <% if user_signed_in? %>
 	<%= form_with model: @activity, url: activities_path, method: :post, local: true do |f| %>
 		
-		<%= f.label :name %>
+		<%= f.label :nombre %>: 
 		<%= f.text_field :name %>	<br>
 
-		<%= f.label :categoría %>
+		<%= f.label :categoría %>: 
 		<%= f.collection_select :category_id, @categories, :id, :name, :prompt => true %><br>
 
-	    <%= f.label :photo %> <br>
+	    <%= f.label :photo %>: 
 	    <%= f.file_field :photo %>
-	    <%= f.text_field :remote_photo_url %><br>
+	    <%= f.text_field :remote_photo_url %><i>(puede subir una imagen o copiar el enlace de una imagen extraída de internet)</i><br>
 
 	    <br>
 	    <i>Si la actividad es Trekking, agregar la ubicación:<br>
 	    (utilizando punto como separador decimal)</i><br>
-	    <%= f.label :latitude %>
+	    <%= f.label :latitude %>: 
 		<%= f.text_field :latitude %>	<br>
 
-		<%= f.label :longitude %>
+		<%= f.label :longitude %>: 
 		<%= f.text_field :longitude %>	<br>
 
-		<%= f.submit "Enviar" %>
+		<%= f.submit "Crear Actividad", :class => 'btn boton-config-titulo' %>
 
 	<% end %>
 <% end %>

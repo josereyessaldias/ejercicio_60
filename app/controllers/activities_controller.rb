@@ -5,6 +5,17 @@ class ActivitiesController < ApplicationController
 		@activity = Activity.find(params[:id])
 		authorize! :show, @activity
 		if user_signed_in?
+
+			@contacts = User.find(current_user.id).contacting
+	      	@contacts_activity = []
+	      	@activity.users.each do |user|
+	        	@contacts.each do |contact|
+	          		if user.id == contact.followed_id
+	            		@contacts_activity << User.find(contact.followed_id)
+	          		end
+	        	end
+	      	end
+
 			@user_act = UserActivity.where(user_id: current_user.id,activity_id: @activity.id)
 			if @user_act != []
 				if @user_act.first.status == 'realizada'				

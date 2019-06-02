@@ -6,12 +6,25 @@ class CollectionsController < ApplicationController
   	@collection = Collection.find(params[:id])
 
   	if user_signed_in?
+      
+      @contacts = User.find(current_user.id).contacting
+      @contacts_collection = []
+      @collection.users.each do |user|
+        @contacts.each do |contact|
+          if user.id == contact.followed_id
+            @contacts_collection << User.find(contact.followed_id)
+          end
+        end
+      end
+
 	  	if UserCollection.where(user_id: current_user.id, collection_id: params[:id]) != []
 	  		@registrada = true
 	  	else
 	  		@registrada = false
 	  	end
-	end
+	  end
+
+    
 
   end
 

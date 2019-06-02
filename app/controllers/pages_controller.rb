@@ -34,10 +34,6 @@ class PagesController < ApplicationController
       end
     end
     
-    @promotes = @promotes.sample(6)
-    
-    
-  
     
 
     @sucesos = []

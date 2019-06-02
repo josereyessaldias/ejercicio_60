@@ -1,40 +1,40 @@
-<h2>Sign up</h2>
+<h3>Sign up</h3>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>: 
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>: 
     <%= f.text_field :name  %>
   </div>
 
   <div class="field">
-    <%= f.label :photo %><br />
+    <%= f.label :photo %>: 
     <%= f.file_field :photo %>
-    <%= f.text_field :remote_photo_url %>
+    <%= f.text_field :remote_photo_url %><i>(puede subir una imagen o copiar el enlace de una imagen extraída de internet)</i><br>
 
   </div>
 
  <div style="position: relative">
     <div class="field useract_fecha">
-      <%= f.label :birth %><br />
+      <%= f.label :birth %>: 
       <%= f.text_field :birth, id: :event_start %>
     </div>
   </div>
  
 
   <div class="field">
-    <%= f.label :country %><br />
+    <%= f.label :country %>: 
     <%= f.text_field :country  %>
   </div>
 
   <div class="field">
-    <%= f.label :city %><br />
+    <%= f.label :city %>: 
     <%= f.text_field :city  %>
   </div>
 
@@ -42,19 +42,20 @@
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <% end %>: 
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %>: 
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
+  <br>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", :class => 'btn boton-config-titulo' %>
   </div>
 <% end %>
+<br>
 
 
 <%= render "devise/shared/links" %>

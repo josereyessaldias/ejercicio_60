@@ -4,14 +4,14 @@
 <% if user_signed_in? %>
 	<%= form_with model: @collection, url: collections_path, method: :post, local: true do |f| %>
 		
-		<%= f.label :name %>
+		<%= f.label :nombre %>: 
 		<%= f.text_field :name %>	<br>
 
-	    <%= f.label :photo %> <br>
+	    <%= f.label :imagen %>: 
 	    <%= f.file_field :photo %>
-	    <%= f.text_field :remote_photo_url %><br>
+	    <%= f.text_field :remote_photo_url %><i>(puede subir una imagen o copiar el enlace de una imagen extraída de internet)</i><br><br>
 
-		<%= f.submit "Crear Colección | Pasar a agregar actividades" %>
+		<%= f.submit "Crear Colección | Pasar a agregar actividades", :class => 'btn boton-config-titulo' %>
 
 	<% end %>
 <% end %>
