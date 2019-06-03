@@ -5,7 +5,7 @@ class UserController < ApplicationController
   	@user = User.find(params[:id])
 
 
-    if user_signed_in?
+    #if user_signed_in?
       @user_act_done = UserActivity.realizadas.eager_load(activity: :category).where(user_id: params[:id]).order(:created_at).reverse
       @titulo_done = "Actividades Realizadas"  if @user_act_done != []
       @user_act_wish = UserActivity.por_realizar.eager_load(activity: :category).where(user_id: params[:id]).order(:created_at).reverse
@@ -28,7 +28,7 @@ class UserController < ApplicationController
       end
 
       @user_collections = UserCollection.eager_load(:collection).where(user_id: params[:id]).order(:created_at).reverse
-    end
+    #end
 
     @my_activities = UserActivity.where(user_id: @user.id, status: "realizada")
 

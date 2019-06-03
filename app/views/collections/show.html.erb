@@ -13,10 +13,12 @@
 				<% end %>
 				<br><br><br><br>
 				<h5 class="titulo-col">Contactos que siguen esta Colección:</h5>
-				<% @contacts_collection.each do |contact| %>
-					<ul class="color-rojo-col">
-						<li><%= link_to contact.name, user_path(contact) %></li>
-					</ul>
+				<% if user_signed_in? %>
+					<% @contacts_collection.each do |contact| %>
+						<ul class="color-rojo-col">
+							<li><%= link_to contact.name, user_path(contact) %></li>
+						</ul>
+					<% end %>
 				<% end %>
 			</div>
 

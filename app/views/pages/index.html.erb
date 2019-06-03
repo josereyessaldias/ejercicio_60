@@ -32,13 +32,11 @@
 		<% end %>
 		<br>
 		<h5>Otros Usuarios registrados</h5>
-		<% if user_signed_in? %>
-			<% @users.sample(8).each do |user| %>
-				<div class="collection_index">
-					<img src="<%= user.photo.thumb %>" >
-					<%= link_to user.name, user_path(user) %> <br>
-				</div>
-			<% end %>
+		<% @users.sample(8).each do |user| %>
+			<div class="collection_index">
+				<img src="<%= user.photo.thumb %>" >
+				<%= link_to user.name, user_path(user) %> <br>
+			</div>
 		<% end %>
 
 	</div>

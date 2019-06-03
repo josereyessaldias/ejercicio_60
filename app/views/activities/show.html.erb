@@ -8,10 +8,12 @@
 				<img src="<%= @activity.photo.normal %>">
 				<br><br><br><br>
 				<h5>Contactos que registraron esta Actividad:</h5>
-				<% @contacts_activity.each do |contact| %>
-					<ul class="color-rojo-col">
-						<li><%= link_to contact.name, user_path(contact) %></li>
-					</ul>
+				<% if user_signed_in? %>
+					<% @contacts_activity.each do |contact| %>
+						<ul class="color-rojo-col">
+							<li><%= link_to contact.name, user_path(contact) %></li>
+						</ul>
+					<% end %>
 				<% end %>
 			</div>
 			<div class="col-12 col-md-6 boton">
