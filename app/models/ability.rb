@@ -30,7 +30,7 @@ class Ability
 
         can [:create, :destroy], UserCollection, user_id: user.id
 
-        can [:create,:destroy], Contact, user_id: user.id
+        can [:create, :destroy], Contact, user_id: user.id
 
         can [:user_calendar], :all
         can [:update_calendar], :all, user_id: user.id

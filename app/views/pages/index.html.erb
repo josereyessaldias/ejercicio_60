@@ -41,32 +41,45 @@
 
 	</div>
 	<div class="col-md-6 col-12 mt-1"><br>
-		<% @sucesos.each do |evento|%>
-			<div class="evento row">
-				
-				<div class="">
-					<img src="<%= evento.user.photo.thumb %>" class="foto-index">
-				</div>
-				<div class="col-9">
-					<p class="texto-index"><strong><%= link_to evento.user.name, user_path(evento.user_id) %></strong>
-						<% if evento.status == "realizada" %>
-							<%= evento.activity.category.past %>
-						<% else %>
-							<%= evento.activity.category.futuro %>
-						<% end %>
-						
-					<%= link_to evento.activity.name, activity_path(evento.activity.id) %><br>
-					Categoría: <%= evento.activity.category.sustantivo %></p>
-				</div>
-				<div>
-					<img src="<%= evento.activity.photo.normal %>">
-					<% evento.actuser_photo.each do |pho| %>
-						<img src="<%= pho.photo %>">
-					<% end %>
-					<br>
-					<p><%= time_ago_in_words(evento.created_at) %></p>
-				</div>
+		
+		<% if not user_signed_in? %>
+			<div class="text-center">
+				<br><i>¡El registro de actividades se encuentra vacío!<br>
+			Comienza registrándote o ingresando como usuario. Luego marca las actividades que hayas realizado y sigue a otros usuarios.</i>
 			</div>
+		<% elsif @sucesos == [] %>
+			<div class="text-center">
+				<br><i>¡El registro de actividades se encuentra vacío!<br>
+			Comienza marcando las actividades que hayas realizado y a siguiendo a otros usuarios.</i>
+			</div>
+		<% else %>
+			<% @sucesos.each do |evento|%>
+				<div class="evento row">
+					
+					<div class="">
+						<img src="<%= evento.user.photo.thumb %>" class="foto-index">
+					</div>
+					<div class="col-9">
+						<p class="texto-index"><strong><%= link_to evento.user.name, user_path(evento.user_id) %></strong>
+							<% if evento.status == "realizada" %>
+								<%= evento.activity.category.past %>
+							<% else %>
+								<%= evento.activity.category.futuro %>
+							<% end %>
+							
+						<%= link_to evento.activity.name, activity_path(evento.activity.id) %><br>
+						Categoría: <%= evento.activity.category.sustantivo %></p>
+					</div>
+					<div>
+						<img src="<%= evento.activity.photo.normal %>">
+						<% evento.actuser_photo.each do |pho| %>
+							<img src="<%= pho.photo %>">
+						<% end %>
+						<br>
+						<p><%= time_ago_in_words(evento.created_at) %></p>
+					</div>
+				</div>
+			<% end %>
 		<% end %>
 	</div>
 	<div class="col-md-3">
